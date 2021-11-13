@@ -24,6 +24,7 @@ class HiWebApplication extends Application
         parent::__construct('HiWeb');
 
         $this->addCommands([
+            new ServiceDetailsCommand(),
         ]);
     }
 }
