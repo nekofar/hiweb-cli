@@ -15,6 +15,7 @@
     "symfony/panther": "^1.1"
   },
   "require-dev": {
+    "roave/security-advisories": "dev-latest",
     "nekofar/dev-tools": "^1.4"
   },
   "config": {
