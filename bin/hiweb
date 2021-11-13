@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * (c) Milad Nekofar <milad@nekofar.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+$app = require __DIR__ . '/../app/hiweb.php';
+$app->run();
