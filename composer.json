@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Nekofar\\HiwebCli\\": "src/"
+      "Nekofar\\Hiweb\\Console\\": "src/"
     }
   },
   "minimum-stability": "dev",
