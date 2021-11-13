@@ -1,23 +1,34 @@
 {
-    "name": "nekofar/hiweb-cli",
-    "description": "Simple command-line tool to access HiWeb account information",
-    "type": "project",
-    "require": {
-        "symfony/panther": "^1.1"
-    },
-    "require-dev": {
-        "nekofar/dev-tools": "^1.4"
-    },
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Nekofar\\HiwebCli\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Milad Nekofar",
-            "email": "milad@nekofar.com"
-        }
-    ]
+  "name": "nekofar/hiweb-cli",
+  "type": "project",
+  "description": "Simple command-line tool to access HiWeb account information",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Milad Nekofar",
+      "email": "milad@nekofar.com"
+    }
+  ],
+  "require": {
+    "symfony/panther": "^1.1"
+  },
+  "require-dev": {
+    "nekofar/dev-tools": "^1.4"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.x-dev"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Nekofar\\HiwebCli\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
