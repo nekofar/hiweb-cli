@@ -17,21 +17,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Prepare the changelog
-        id: prepare
-        run: |
-          touch CHANGES.md
-          PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1) 2> /dev/null)
-          if [[ $PREV_TAG == v*.*.* ]]; then
-            echo "::set-output name=latest::--latest"
-          fi
-
       - name: Generate the changelog
         uses: orhun/git-cliff-action@v1.1.5
         id: git-cliff
         with:
           config: cliff.toml
-          args: -vv --strip all ${{ steps.cliff_pre.outputs.latest }}
+          args: -vv --strip all --latest
         env:
           OUTPUT: CHANGES.md
 
