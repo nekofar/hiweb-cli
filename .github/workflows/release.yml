@@ -71,7 +71,7 @@ jobs:
           tools/box compile
 
       - name: Publish on the GitHub releases
-        uses: softprops/action-gh-release@v1
+        uses: svenstaro/upload-release-action@2.2.1
         with:
           file: bin/hiweb.phar
           tag: ${{ github.ref }}
