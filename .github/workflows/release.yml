@@ -17,16 +17,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Generate a changelog
+      - name: Prepare the changelog
+        id: prepare
+        run: |
+          touch CHANGES.md
+          PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1) 2> /dev/null)
+          if [[ $PREV_TAG == v*.*.* ]]; then
+            echo "::set-output name=latest::--latest"
+          fi
+
+      - name: Generate the changelog
         uses: orhun/git-cliff-action@v1.1.5
         id: git-cliff
         with:
           config: cliff.toml
-          args: -vv --latest --strip header
+          args: -vv --strip all ${{ steps.cliff_pre.outputs.latest }}
         env:
           OUTPUT: CHANGES.md
 
-      - name: Set the release body
+      - name: Update the release body
         id: release
         shell: bash
         run: |
@@ -37,9 +46,28 @@ jobs:
           r="${r//$'\r'/'%0D'}"   # Multiline escape sequences for '\r'
           echo "::set-output name=RELEASE_BODY::$r"
 
-      # use release body in the same job
-      - name: Release on GitHub
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+  # use release body in another job
+  upload:
+    name: Upload the release
+    needs: changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup PHP with tools
+        uses: shivammathur/setup-php@v2.15.0
         with:
-          body: ${{ steps.release.outputs.RELEASE_BODY }}
+          php-version: '7.4'
+          tools: composer, phive
+
+      - name: Generate the phar package
+        run: |
+          phive install humbug/box --force-accept-unsigned
+          composer update --no-interaction --no-progress --no-dev --prefer-stable --optimize-autoloader
+          composer info -D | sort
+          box compile
+
+      - name: Publish on the GitHub releases
+        uses: softprops/action-gh-release@v1
+        with:
+          file: bin/hiweb.phar
+          tag: ${{ github.ref }}
+          body: ${{ needs.changelog.outputs.release_body }}

@@ -7,9 +7,13 @@
  * file that was distributed with this source code.
  */
 
+declare(strict_types=1);
+
 use Nekofar\HiWeb\Console\HiWebApplication;
 
-if (!$loader = include __DIR__.'/../vendor/autoload.php') {
+$loader = include __DIR__ . '/../vendor/autoload.php';
+
+if (!$loader) {
     die('You must set up the project dependencies.');
 }
 
