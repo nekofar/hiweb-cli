@@ -16,6 +16,9 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputOption;
 
+/**
+ *
+ */
 class HiWebApplication extends Application
 {
     /**
@@ -31,7 +34,6 @@ class HiWebApplication extends Application
     }
 
     /**
-     * @return InputDefinition
      */
     protected function getDefaultInputDefinition(): InputDefinition
     {
@@ -41,14 +43,14 @@ class HiWebApplication extends Application
             'username',
             'u',
             InputOption::VALUE_REQUIRED,
-            'The username of the user.'
+            'The username of the user.',
         ));
 
         $definition->addOption(new InputOption(
             'password',
             'p',
             InputOption::VALUE_REQUIRED,
-            'The password of the user.'
+            'The password of the user.',
         ));
 
         return $definition;
