@@ -63,7 +63,7 @@ jobs:
           phive install humbug/box --force-accept-unsigned
           composer update --no-interaction --no-progress --no-dev --prefer-stable --optimize-autoloader
           composer info -D | sort
-          box compile
+          tools/box compile
 
       - name: Publish on the GitHub releases
         uses: softprops/action-gh-release@v1
