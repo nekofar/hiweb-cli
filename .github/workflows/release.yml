@@ -61,6 +61,11 @@ jobs:
           composer info -D | sort
           tools/box compile
 
+      - name: Generate all package hash files
+        run: |
+          md5 -q bin/hiweb.phar > hiweb.phar.md5
+          shasum -a 256 bin/hiweb.phar | cut -d ' ' -f 1 > hiweb.phar.sha256
+
       - name: Publish on the GitHub releases
         uses: svenstaro/upload-release-action@2.2.1
         with:
