@@ -13,6 +13,8 @@ namespace Nekofar\HiWeb\Console;
 
 use Nekofar\HiWeb\Console\Command\ServiceDetailsCommand;
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\InputDefinition;
+use Symfony\Component\Console\Input\InputOption;
 
 class HiWebApplication extends Application
 {
@@ -26,5 +28,29 @@ class HiWebApplication extends Application
         $this->addCommands([
             new ServiceDetailsCommand(),
         ]);
+    }
+
+    /**
+     * @return InputDefinition
+     */
+    protected function getDefaultInputDefinition(): InputDefinition
+    {
+        $definition = parent::getDefaultInputDefinition();
+
+        $definition->addOption(new InputOption(
+            'username',
+            'u',
+            InputOption::VALUE_REQUIRED,
+            'The username of the user.'
+        ));
+
+        $definition->addOption(new InputOption(
+            'password',
+            'p',
+            InputOption::VALUE_REQUIRED,
+            'The password of the user.'
+        ));
+
+        return $definition;
     }
 }
