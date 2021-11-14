@@ -17,16 +17,25 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Generate a changelog
+      - name: Prepare the changelog
+        id: prepare
+        run: |
+          touch CHANGES.md
+          PREV_TAG=$(git describe --abbrev=0 --tags $(git rev-list --tags --max-count=1) 2> /dev/null)
+          if [[ $PREV_TAG == v*.*.* ]]; then
+            echo "::set-output name=latest::--latest"
+          fi
+
+      - name: Generate the changelog
         uses: orhun/git-cliff-action@v1.1.5
         id: git-cliff
         with:
           config: cliff.toml
-          args: -vv --latest --strip header
+          args: -vv --strip all ${{ steps.cliff_pre.outputs.latest }}
         env:
           OUTPUT: CHANGES.md
 
-      - name: Set the release body
+      - name: Update the release body
         id: release
         shell: bash
         run: |
@@ -38,7 +47,7 @@ jobs:
           echo "::set-output name=RELEASE_BODY::$r"
 
       # use release body in the same job
-      - name: Release on GitHub
+      - name: Publish on the GitHub releases
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
