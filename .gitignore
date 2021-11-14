@@ -1,2 +1,4 @@
 *.phar
 /vendor/
+.phive/
+tools/
