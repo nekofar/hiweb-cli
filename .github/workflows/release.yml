@@ -52,6 +52,11 @@ jobs:
     needs: changelog
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2.4.0
+        with:
+          fetch-depth: 0
+
       - name: Setup PHP with tools
         uses: shivammathur/setup-php@2.15.0
         with:
