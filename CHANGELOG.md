@@ -1,6 +1,28 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.0.0-alpha.1] - 2021-11-14
+
+### Bug Fixes
+
+- Add the missing bin property for composer configuration
+
+### Documentation
+
+- Add defalut php code sniffer configuration
+- Update installation and usage information
+
+### Miscellaneous Tasks
+
+- Drop support for php 7.3 due to deprecation
+- Ignore composer phar file
+- Ignore all phar files
+- Add the configuration file for `box`
+
+### Styling
+
+- Solve some issues regrding code formating and styles
+
 ## [1.0.0-alpha.0] - 2021-11-14
 
 ### Bug Fixes
