@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.0.0-alpha.3] - 2021-11-14
+
+### Miscellaneous Tasks
+
+- Ignore phive and tools folders
+
 ## [1.0.0-alpha.1] - 2021-11-14
 
 ### Bug Fixes
