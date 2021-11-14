@@ -63,8 +63,9 @@ jobs:
 
       - name: Generate all package hash files
         run: |
-          md5 -q bin/hiweb.phar > hiweb.phar.md5
+          md5sum bin/hiweb.phar | cut -d ' ' -f 1 > hiweb.phar.md5
           shasum -a 256 bin/hiweb.phar | cut -d ' ' -f 1 > hiweb.phar.sha256
+          shasum -a 512 bin/hiweb.phar | cut -d ' ' -f 1 > hiweb.phar.sha512
 
       - name: Publish on the GitHub releases
         uses: softprops/action-gh-release@v0.1.13
@@ -74,4 +75,5 @@ jobs:
             bin/hiweb.phar
             hiweb.phar.md5
             hiweb.phar.sha256
+            hiweb.phar.sha512
           body: ${{ needs.changelog.outputs.release_body }}
