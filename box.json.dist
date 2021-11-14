@@ -1,0 +1,21 @@
+{
+  "finder": [
+    {
+      "name": [
+        "*.php"
+      ],
+      "exclude": [
+        "Test",
+        "test",
+        "Tests",
+        "tests"
+      ],
+      "in": [
+        "app",
+        "src",
+        "vendor"
+      ]
+    }
+  ]
+}
+
