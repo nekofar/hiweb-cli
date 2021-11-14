@@ -46,9 +46,28 @@ jobs:
           r="${r//$'\r'/'%0D'}"   # Multiline escape sequences for '\r'
           echo "::set-output name=RELEASE_BODY::$r"
 
-      # use release body in the same job
+  # use release body in another job
+  upload:
+    name: Upload the release
+    needs: changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup PHP with tools
+        uses: shivammathur/setup-php@v2.15.0
+        with:
+          php-version: '7.4'
+          tools: composer, phive
+
+      - name: Generate the phar package
+        run: |
+          phive install humbug/box --force-accept-unsigned
+          composer update --no-interaction --no-progress --no-dev --prefer-stable --optimize-autoloader
+          composer info -D | sort
+          box compile
+
       - name: Publish on the GitHub releases
         uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
         with:
-          body: ${{ steps.release.outputs.RELEASE_BODY }}
+          file: bin/hiweb.phar
+          tag: ${{ github.ref }}
+          body: ${{ needs.changelog.outputs.release_body }}
