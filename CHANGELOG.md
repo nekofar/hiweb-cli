@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.0.0-alpha.9] - 2021-11-17
+
+### Miscellaneous Tasks
+
+- Bump softprops/action-gh-release from 0.1.13 to 1
+- Bump `softprops/action-gh-release` action to v0.1.14
+
 ## [1.0.0-alpha.3] - 2021-11-14
 
 ### Miscellaneous Tasks
