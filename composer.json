@@ -12,7 +12,7 @@
   "require": {
     "php": "^7.4 || ^8.0",
     "symfony/console": "^5.3",
-    "symfony/panther": "^1.1"
+    "symfony/panther": "^2.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
