@@ -49,7 +49,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup PHP with tools
-        uses: shivammathur/setup-php@2.18.0
+        uses: shivammathur/setup-php@2.18.1
         with:
           php-version: '7.4'
           tools: composer, phive
