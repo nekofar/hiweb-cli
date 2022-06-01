@@ -16,7 +16,7 @@
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
-    "nekofar/dev-tools": "^1.4"
+    "nekofar/dev-tools": "^2.1"
   },
   "config": {
     "preferred-install": "dist",
